@@ -1,27 +1,14 @@
-RESUME STUDIO
-=============
+RESUME STUDIO — VERSION 2.3
+============================
 
-HOW TO USE
-1. Extract the ZIP file.
+- Photo upload fix from V2.2 is retained.
+- Contact card colour is now a dropdown with the same four themes:
+  Electric green, Ice blue, Violet, Amber.
+- Changing Contact card colour updates only the Contact card.
+- Main Accent colour remains a separate setting.
+
+Use:
+1. Extract this ZIP into a new folder.
 2. Open index.html in Chrome.
-3. Edit the sample details with the applicant's information.
-4. Upload a profile photo if needed.
-5. Add/remove education, experience, and skills as required.
-6. Click Print Resume. To create a PDF, choose "Save as PDF" in the print dialog.
-
-FEATURES
-- Live resume preview
-- Editable personal details, summary, education, experience and skills
-- Profile photo upload
-- Accent colour selector
-- A4 print layout
-- PDF export through the browser print dialog
-- Mobile responsive editor and preview
-
-NOTES
-- The starter content is fictional sample data. Replace it before using the resume.
-- Developer credit appears only in the website footer and is hidden on the printed resume.
-- For best output choose A4, enable Background graphics, and inspect print preview.
-- Google Fonts are optional; local system fonts are used when offline.
-
-UPDATE: Profile photo visibility and independent contact-card colour selection are fixed.
+3. Upload a photo and select Contact card colour from Design Settings.
+4. Print Resume or choose Save as PDF from the print dialog.

@@ -52,7 +52,12 @@
     <section class="form-section">
       <h2><span>06</span> Design settings</h2>
       <label>Accent colour<select id="accent"><option value="#19ed9a">Electric green</option><option value="#5ce1ff">Ice blue</option><option value="#c49bff">Violet</option><option value="#ffb454">Amber</option></select></label>
-      <label>Contact card colour<select id="contactAccent"><option value="#159e68">Emerald green</option><option value="#087fba">Ocean blue</option><option value="#7046b8">Royal violet</option><option value="#bd6b16">Warm amber</option><option value="#252b28">Charcoal</option></select></label>
+      <label>Contact card colour<select id="contactAccent" aria-label="Choose contact card colour">
+        <option value="#19ed9a">Electric green</option>
+        <option value="#5ce1ff">Ice blue</option>
+        <option value="#c49bff">Violet</option>
+        <option value="#ffb454">Amber</option>
+      </select></label>
       <label class="checkline"><input type="checkbox" id="showLocation" checked> Show location on resume</label>
     </section>
     <div class="editor-footer">TIP: Use the Print button and choose “Save as PDF” to save a PDF copy.</div>
@@ -64,7 +69,7 @@
       <div class="decor decor-one">〰</div><div class="decor decor-two">〰</div>
       <div class="resume-topline"><span>WEB DESIGNING</span><span>VIDEO EDITING</span><span>AI TOOLS</span></div>
       <div class="hero">
-        <div class="portrait-wrap"><img id="photoPreview" alt="Profile photo" hidden><div class="photo-placeholder" id="photoPlaceholder">ADD<br>PHOTO</div><div class="role-ribbon" id="previewRole">WEB DEVELOPER</div></div>
+        <div class="portrait-wrap" id="portraitWrap"><img id="photoPreview" alt="Uploaded profile photo"><div class="photo-placeholder" id="photoPlaceholder">ADD<br>PHOTO</div><div class="role-ribbon" id="previewRole">WEB DEVELOPER</div></div>
         <div class="hero-name"><h2 id="previewName">INZMAAM</h2><div class="surname" id="previewSurname">ALI</div><div class="star-row">✦ <span>✦</span> ✦ <span>✦</span> ✦</div></div>
       </div>
       <section class="summary-block"><h3>PROFESSIONAL SUMMARY<span>....</span></h3><p id="previewSummary"></p></section>
@@ -75,7 +80,7 @@
         </div>
         <div class="right-col">
           <section class="resume-card experience-card"><h3>✴ EXPERIENCE</h3><div id="previewExperience"></div></section>
-          <section class="contact-card"><h3>✴ CONTACT</h3><p><b>☎</b><span id="previewPhone"></span></p><p><b>✉</b><span id="previewEmail"></span></p><p id="locationLine"><b>⌖</b><span id="previewLocation"></span></p></section>
+          <section class="contact-card" id="contactCard"><h3>✴ CONTACT</h3><p><b>☎</b><span id="previewPhone"></span></p><p><b>✉</b><span id="previewEmail"></span></p><p id="locationLine"><b>⌖</b><span id="previewLocation"></span></p></section>
         </div>
       </div>
       <div class="resume-bottom">CREATIVE MINDSET <span>✦</span> DIGITAL SKILLS <span>✦</span> READY TO GROW</div>

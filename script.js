@@ -39,7 +39,7 @@ function updatePreview(){
   $("previewExperience").innerHTML=experience.map(x=>`<div class="experience-item"><h4>✦ ${escapeHTML(x.title)}</h4><p><span class="year">${escapeHTML(x.year||"")}</span> &nbsp; ${escapeHTML(x.detail)}</p></div>`).join("");
   const skills=$("skills").value.split(",").map(x=>x.trim()).filter(Boolean);
   $("previewSkills").innerHTML=skills.map(x=>`<span class="skill-chip">${escapeHTML(x)}</span>`).join("");
-  const accent=$("accent").value;const contactAccent=$("contactAccent").value;document.documentElement.style.setProperty("--accent",accent);$("resume").style.setProperty("--accent",accent);$("resume").style.setProperty("--contact-accent",contactAccent);
+  const accent=$("accent").value;document.documentElement.style.setProperty("--accent",accent);$("resume").style.setProperty("--accent",accent);$("contactCard").style.backgroundColor=$("contactAccent").value;
   const resume=$("resume");resume.classList.toggle("compact",education.length>4||experience.length>2||skills.length>7||$("summary").value.length>430);
 }
 fields.forEach(id=>$(id).addEventListener("input",updatePreview));
@@ -51,14 +51,33 @@ document.querySelectorAll("[data-add]").forEach(btn=>btn.addEventListener("click
   renderRepeat(btn.dataset.add);updatePreview();
 }));
 $("photo").addEventListener("change",e=>{
-  const file=e.target.files?.[0];if(!file)return;
-  if(!file.type.startsWith("image/")){alert("Please choose an image file.");return;}
-  if(photoURL)URL.revokeObjectURL(photoURL);photoURL=URL.createObjectURL(file);
-  $("photoPreview").src=photoURL;$("photoPreview").hidden=false;$("photoPlaceholder").hidden=true;
+  const file=e.target.files && e.target.files[0];
+  if(!file) return;
+  if(!file.type || !file.type.startsWith("image/")){
+    alert("Please choose a valid image file (JPG, PNG, WEBP).");
+    e.target.value="";
+    return;
+  }
+  const reader=new FileReader();
+  reader.onload=()=>{
+    const img=$("photoPreview");
+    img.onload=()=>{
+      $("portraitWrap").classList.add("has-photo");
+    };
+    img.onerror=()=>{
+      $("portraitWrap").classList.remove("has-photo");
+      alert("This image could not be displayed. Please try another JPG or PNG photo.");
+    };
+    img.src=reader.result;
+  };
+  reader.onerror=()=>alert("Could not read this photo. Please choose the image again.");
+  reader.readAsDataURL(file);
 });
 $("removePhoto").addEventListener("click",()=>{
-  if(photoURL)URL.revokeObjectURL(photoURL);photoURL="";
-  $("photoPreview").removeAttribute("src");$("photoPreview").hidden=true;$("photoPlaceholder").hidden=false;$("photo").value="";
+  const img=$("photoPreview");
+  img.removeAttribute("src");
+  $("portraitWrap").classList.remove("has-photo");
+  $("photo").value="";
 });
 function printResume(){window.print();}
 $("printBtn").addEventListener("click",printResume);

@@ -8,3 +8,11 @@
 .site-credit{max-width:1500px;margin:0 auto;padding:18px 4vw 28px;text-align:center;color:#7f8b84;font-size:9px;letter-spacing:2px;border-top:1px solid #202722}
 .site-credit strong{color:var(--accent);font-size:11px;margin-left:6px}
 @media print{.site-credit{display:none!important}}
+
+/* V2.2 robust photo preview and contact-card colour controls */
+.portrait-wrap img{display:none;z-index:2;left:0;right:0;width:100%;object-fit:cover}
+.portrait-wrap.has-photo img{display:block!important;visibility:visible!important;opacity:1!important}
+.portrait-wrap.has-photo .photo-placeholder{display:none!important}
+.portrait-wrap:not(.has-photo) img{display:none!important}
+.portrait-wrap .role-ribbon{position:relative;z-index:3;flex:none}
+.contact-card{background-color:#159e68}
