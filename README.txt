@@ -23,3 +23,5 @@ NOTES
 - Developer credit appears only in the website footer and is hidden on the printed resume.
 - For best output choose A4, enable Background graphics, and inspect print preview.
 - Google Fonts are optional; local system fonts are used when offline.
+
+UPDATE: Profile photo visibility and independent contact-card colour selection are fixed.

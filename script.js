@@ -39,11 +39,12 @@ function updatePreview(){
   $("previewExperience").innerHTML=experience.map(x=>`<div class="experience-item"><h4>✦ ${escapeHTML(x.title)}</h4><p><span class="year">${escapeHTML(x.year||"")}</span> &nbsp; ${escapeHTML(x.detail)}</p></div>`).join("");
   const skills=$("skills").value.split(",").map(x=>x.trim()).filter(Boolean);
   $("previewSkills").innerHTML=skills.map(x=>`<span class="skill-chip">${escapeHTML(x)}</span>`).join("");
-  const accent=$("accent").value;document.documentElement.style.setProperty("--accent",accent);$("resume").style.setProperty("--accent",accent);
+  const accent=$("accent").value;const contactAccent=$("contactAccent").value;document.documentElement.style.setProperty("--accent",accent);$("resume").style.setProperty("--accent",accent);$("resume").style.setProperty("--contact-accent",contactAccent);
   const resume=$("resume");resume.classList.toggle("compact",education.length>4||experience.length>2||skills.length>7||$("summary").value.length>430);
 }
 fields.forEach(id=>$(id).addEventListener("input",updatePreview));
 $("accent").addEventListener("change",updatePreview);
+$("contactAccent").addEventListener("change",updatePreview);
 document.querySelectorAll("[data-add]").forEach(btn=>btn.addEventListener("click",()=>{
   if(btn.dataset.add==="education")education.push({title:"New qualification",detail:"Add details"});
   else experience.push({title:"New experience",year:"2026",detail:"Describe your work"});
