@@ -1,194 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Professional Resume Builder</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a09">
+  <title>Resume Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-mark">✦</span> RESUME <b>STUDIO</b></a>
+  <div class="top-actions"><span class="live-dot">● LIVE PREVIEW</span><button class="btn btn-outline" id="downloadBtn">↓ Download PDF</button><button class="btn btn-green" id="printBtn">▣ Print Resume</button></div>
+</header>
+<main class="workspace">
+  <aside class="editor">
+    <div class="editor-heading"><div><p class="eyebrow">YOUR NEXT OPPORTUNITY</p><h1>Build your<br><em>bold resume.</em></h1></div><span class="spark">✳</span></div>
+    <p class="muted intro">Edit the details below. Your resume updates instantly. Keep it to one page for the cleanest result.</p>
+    <section class="form-section">
+      <h2><span>01</span> Personal details</h2>
+      <label>Full name<input id="name" value="ALEX MORGAN" placeholder="Your full name"></label>
+      <label>Professional title<input id="role" value="WEB DEVELOPER" placeholder="e.g. Graphic Designer"></label>
+      <div class="two">
+        <label>Phone<input id="phone" value="+91 98765 43210" placeholder="+91..."></label>
+        <label>Email<input id="email" value="alex.morgan@example.com" placeholder="you@email.com"></label>
+      </div>
+      <label>Location<input id="location" value="New Delhi, India" placeholder="City, State"></label>
+      <label>Profile photo <input id="photo" type="file" accept="image/*"></label>
+      <button class="text-btn" id="removePhoto">Remove photo</button>
+    </section>
+    <section class="form-section">
+      <h2><span>02</span> Professional summary</h2>
+      <label>About you<textarea id="summary" rows="5">Motivated and detail-oriented professional with a strong foundation in web development, digital tools, and creative problem-solving. Skilled at learning new technologies, collaborating with teams, and delivering practical solutions. Eager to contribute, grow professionally, and take on new challenges.</textarea></label>
+    </section>
+    <section class="form-section">
+      <h2><span>03</span> Education</h2>
+      <div id="educationList" class="repeat-list"></div>
+      <button class="add-btn" data-add="education">＋ Add education</button>
+    </section>
+    <section class="form-section">
+      <h2><span>04</span> Experience</h2>
+      <div id="experienceList" class="repeat-list"></div>
+      <button class="add-btn" data-add="experience">＋ Add experience</button>
+    </section>
+    <section class="form-section">
+      <h2><span>05</span> Skills</h2>
+      <label>Skills <small>Separate each skill with a comma</small><textarea id="skills" rows="3">HTML & CSS, JavaScript, Communication, Problem Solving, Teamwork</textarea></label>
+    </section>
+    <section class="form-section">
+      <h2><span>06</span> Design settings</h2>
+      <label>Accent colour<select id="accent"><option value="#19ed9a">Electric green</option><option value="#5ce1ff">Ice blue</option><option value="#c49bff">Violet</option><option value="#ffb454">Amber</option></select></label>
+      <label class="checkline"><input type="checkbox" id="showLocation" checked> Show location on resume</label>
+    </section>
+    <div class="editor-footer">TIP: Use the Print button and choose “Save as PDF” to save a PDF copy.</div>
+  </aside>
 
-<div class="container">
-
-<div class="form">
-
-<h2>Resume Builder</h2>
-
-<label>Profile Photo</label>
-<input type="file" id="photo" accept="image/*">
-
-<label>Full Name</label>
-<input type="text"
-id="name"
-placeholder="Enter Your Full Name">
-
-<label>Job Title</label>
-<input type="text"
-id="job"
-placeholder="Enter Your Job Title">
-
-<label>Email Address</label>
-<input type="email"
-id="email"
-placeholder="Enter Your Email Address">
-
-<label>Phone Number</label>
-<input type="text"
-id="phone"
-placeholder="Enter Your Phone Number">
-
-<label>Address</label>
-<input type="text"
-id="address"
-placeholder="Enter Your Full Address">
-
-<label>Professional Summary</label>
-<textarea
-id="summary"
-placeholder="Write a short professional summary..."></textarea>
-
-<label>Skills (Comma Separated)</label>
-<textarea
-id="skills"
-placeholder="HTML, CSS, JavaScript, Python"></textarea>
-
-<label>Education</label>
-<textarea
-id="education"
-placeholder="Enter Your Education Details"></textarea>
-
-<label>Experience</label>
-<textarea
-id="experience"
-placeholder="Enter Your Work Experience"></textarea>
-
-<label>Projects</label>
-<textarea
-id="projects"
-placeholder="Enter Your Projects"></textarea>
-
-<div class="buttons">
-
-<button id="download">
-<i class="fa-solid fa-file-pdf"></i>
-Download PDF
-</button>
-
-<button id="print">
-<i class="fa-solid fa-print"></i>
-Print Resume
-</button>
-
-</div>
-
-</div>
-  <!-- ================= Resume Preview ================= -->
-
-<div class="preview">
-
-<div id="resume">
-
-<div class="top">
-
-<img
-src="https://via.placeholder.com/120"
-id="previewPhoto"
-alt="Profile Photo">
-
-<h1 id="previewName">
-Your Name
-</h1>
-
-<h3 id="previewJob">
-Job Title
-</h3>
-
-</div>
-
-<hr>
-
-<h2>Contact</h2>
-
-<p>
-<i class="fa-solid fa-envelope"></i>
-<span id="previewEmail">
-email@example.com
-</span>
-</p>
-
-<p>
-<i class="fa-solid fa-phone"></i>
-<span id="previewPhone">
-+91 9876543210
-</span>
-</p>
-
-<p>
-<i class="fa-solid fa-location-dot"></i>
-<span id="previewAddress">
-Your Address
-</span>
-</p>
-
-<h2>Professional Summary</h2>
-
-<p id="previewSummary">
-Write your professional summary here...
-</p>
-
-<h2>Skills</h2>
-
-<ul id="previewSkills">
-<li>TYPING</li>
-<li>CCC</li>
-<li>HTML</li>
-</ul>
-
-<h2>Education</h2>
-
-<p id="previewEducation">
-Your Education Details
-</p>
-
-<h2>Experience</h2>
-
-<p id="previewExperience">
-Your Work Experience
-</p>
-
-<h2>Projects</h2>
-
-<p id="previewProjects">
-Your Projects
-</p>
-
-</div>
-
-</div><!-- Footer -->
-
-<footer class="footer">
-
-    <p>
-        Designed & Developed by
-        <br>
-        <strong>Injmam Ali</strong>
-    </p>
-
-</footer>
-
-</div>
-
+  <section class="preview-area">
+    <div class="preview-toolbar"><div><span class="preview-dot"></span> RESUME PREVIEW <small>· A4 FORMAT</small></div><span class="scale-label">LIVE</span></div>
+    <article class="resume" id="resume">
+      <div class="decor decor-one">〰</div><div class="decor decor-two">〰</div>
+      <div class="resume-topline"><span>WEB DESIGNING</span><span>VIDEO EDITING</span><span>AI TOOLS</span></div>
+      <div class="hero">
+        <div class="portrait-wrap"><img id="photoPreview" alt="Profile photo" hidden><div class="photo-placeholder" id="photoPlaceholder">ADD<br>PHOTO</div><div class="role-ribbon" id="previewRole">WEB DEVELOPER</div></div>
+        <div class="hero-name"><h2 id="previewName">INZMAAM</h2><div class="surname" id="previewSurname">ALI</div><div class="star-row">✦ <span>✦</span> ✦ <span>✦</span> ✦</div></div>
+      </div>
+      <section class="summary-block"><h3>PROFESSIONAL SUMMARY<span>....</span></h3><p id="previewSummary"></p></section>
+      <div class="content-grid">
+        <div class="left-col">
+          <section class="resume-card"><h3>✴ EDUCATION <span class="card-lines">☰</span></h3><ul id="previewEducation"></ul></section>
+          <section class="resume-card skills-card"><h3>✴ SKILLS <span class="card-lines">☰</span></h3><div id="previewSkills" class="skill-cloud"></div></section>
+        </div>
+        <div class="right-col">
+          <section class="resume-card experience-card"><h3>✴ EXPERIENCE</h3><div id="previewExperience"></div></section>
+          <section class="contact-card"><h3>✴ CONTACT</h3><p><b>☎</b><span id="previewPhone"></span></p><p><b>✉</b><span id="previewEmail"></span></p><p id="locationLine"><b>⌖</b><span id="previewLocation"></span></p></section>
+        </div>
+      </div>
+      <div class="resume-bottom">CREATIVE MINDSET <span>✦</span> DIGITAL SKILLS <span>✦</span> READY TO GROW</div>
+    </article>
+    <p class="preview-note">Your finished resume is designed for A4 printing. On mobile, use landscape or zoom out to inspect the full page.</p>
+  </section>
+</main>
+<footer class="site-credit">DEVELOPED BY <strong>INZMAAM ALI</strong></footer>
 <script src="script.js"></script>
-
 </body>
 </html>
